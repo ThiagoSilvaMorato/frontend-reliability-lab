@@ -1,0 +1,155 @@
+{
+  "id": 10300,
+  "name": "hawlucha-mega",
+  "base_experience": null,
+  "height": 10,
+  "is_default": false,
+  "order": -1,
+  "weight": 250,
+  "abilities": [
+    {
+      "is_hidden": false,
+      "slot": 1,
+      "ability": {
+        "name": "no-guard",
+        "url": "https://pokeapi.co/api/v2/ability/99/"
+      }
+    }
+  ],
+  "past_abilities": [],
+  "forms": [
+    {
+      "name": "hawlucha-mega",
+      "url": "https://pokeapi.co/api/v2/pokemon-form/10525/"
+    }
+  ],
+  "held_items": [],
+  "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/10300/encounters",
+  "species": {
+    "name": "hawlucha",
+    "url": "https://pokeapi.co/api/v2/pokemon-species/701/"
+  },
+  "sprites": {
+    "other": {
+      "home": {
+        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/10300.png",
+        "front_female": null,
+        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10300.png",
+        "front_shiny_female": null
+      },
+      "showdown": {
+        "back_shiny": null,
+        "back_female": null,
+        "front_shiny": null,
+        "back_default": null,
+        "front_female": null,
+        "front_default": null,
+        "back_shiny_female": null,
+        "front_shiny_female": null
+      },
+      "dream_world": {
+        "front_female": null,
+        "front_default": null
+      },
+      "official-artwork": {
+        "versions": {
+          "generation-i": {
+            "red-and-blue": {
+              "front_default": null
+            },
+            "red-and-green": {
+              "front_default": null
+            }
+          },
+          "generation-ii": {
+            "gold-and-silver": {
+              "front_default": null
+            }
+          }
+        },
+        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/10300.png",
+        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10300.png"
+      }
+    },
+    "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10300.png",
+    "back_female": null,
+    "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10300.png",
+    "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10300.png",
+    "front_female": null,
+    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10300.png",
+    "back_shiny_female": null,
+    "front_shiny_female": null
+  },
+  "cries": {
+    "latest": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10300.ogg",
+    "legacy": null
+  },
+  "stats": [
+    {
+      "base_stat": 78,
+      "effort": 0,
+      "stat": {
+        "name": "hp",
+        "url": "https://pokeapi.co/api/v2/stat/1/"
+      }
+    },
+    {
+      "base_stat": 137,
+      "effort": 0,
+      "stat": {
+        "name": "attack",
+        "url": "https://pokeapi.co/api/v2/stat/2/"
+      }
+    },
+    {
+      "base_stat": 100,
+      "effort": 0,
+      "stat": {
+        "name": "defense",
+        "url": "https://pokeapi.co/api/v2/stat/3/"
+      }
+    },
+    {
+      "base_stat": 74,
+      "effort": 0,
+      "stat": {
+        "name": "special-attack",
+        "url": "https://pokeapi.co/api/v2/stat/4/"
+      }
+    },
+    {
+      "base_stat": 93,
+      "effort": 0,
+      "stat": {
+        "name": "special-defense",
+        "url": "https://pokeapi.co/api/v2/stat/5/"
+      }
+    },
+    {
+      "base_stat": 118,
+      "effort": 0,
+      "stat": {
+        "name": "speed",
+        "url": "https://pokeapi.co/api/v2/stat/6/"
+      }
+    }
+  ],
+  "past_stats": [],
+  "types": [
+    {
+      "slot": 1,
+      "type": {
+        "name": "fighting",
+        "url": "https://pokeapi.co/api/v2/type/2/"
+      }
+    },
+    {
+      "slot": 2,
+      "type": {
+        "name": "flying",
+        "url": "https://pokeapi.co/api/v2/type/3/"
+      }
+    }
+  ],
+  "past_types": []
+}
