@@ -23,7 +23,7 @@ UI strings live in `src/i18n` (`en`, `pt-BR`).
 
 ## Stack
 
-React 19 · TypeScript (strict) · Vite · TanStack Query · Axios · Zod · React Router · MSW · Vitest · React Testing Library · Playwright · ESLint · Prettier · CSS Modules.
+React 19 · TypeScript (strict) · Vite · TanStack Query · Axios · Zod · React Router · MSW · Vitest · React Testing Library · Playwright · ESLint · Prettier · Tailwind CSS v4.
 
 Every new dependency must answer, in the commit/ADR: what problem it solves, whether it is simple to do without it,
 the complexity it adds, and the engineering value it demonstrates. No libraries "for convenience".
@@ -121,7 +121,8 @@ No observability platform. Telemetry is produced at the HTTP-client/QueryCache b
 
 ## Design
 
-Minimal, modern, product-like. Muted palette, exposed as CSS custom properties in `src/styles/tokens.css` (never hard-code colors in components):
+Minimal, modern, product-like. Styling is Tailwind CSS v4. The palette lives **only** in `src/styles/tokens.css` (`@theme`) and is consumed through
+utilities (`bg-surface`, `text-foreground`, `border-border`, `text-subtle`, ...). No arbitrary color values (`bg-[#fff]`) in components:
 
 ```text
 Background #F8FAFC · Surface #FFFFFF · Primary #64748B · Primary Light #E2E8F0 · Text #334155
@@ -129,7 +130,7 @@ Muted Text #94A3B8 · Border #E2E8F0 · Success #86A88A · Warning #C9A66B · Er
 ```
 
 Status colors are never the only carrier of meaning (also icon/text). Note: Muted Text `#94A3B8` on white is below WCAG AA for body text —
-use it only for large/secondary non-essential text, and use a darker derived token for readable secondary text.
+use it (`text-muted`) only for large/secondary non-essential text, and `text-subtle` for readable secondary text.
 
 ## Testing
 

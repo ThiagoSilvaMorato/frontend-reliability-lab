@@ -1,20 +1,12 @@
+@import 'tailwindcss';
 @import './tokens.css';
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
 
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  color: var(--color-text);
-  background: var(--color-background);
-  line-height: 1.5;
-}
-
-:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  :focus-visible {
+    @apply ring-info/60 outline-none ring-4;
+  }
 }
