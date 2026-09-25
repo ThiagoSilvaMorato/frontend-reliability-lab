@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import pluginQuery from '@tanstack/eslint-plugin-query'
 import prettier from 'eslint-config-prettier'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -20,6 +21,7 @@ export default tseslint.config(
     files: ['**/*.{ts,tsx}'],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
+      ...pluginQuery.configs['flat/recommended'],
       reactHooks.configs.flat.recommended,
       jsxA11y.flatConfigs.recommended,
     ],
