@@ -77,5 +77,62 @@
       "title": "Something went wrong",
       "description": "An unexpected error occurred while displaying this page."
     }
+  },
+  "common": {
+    "loading": "Loading…"
+  },
+  "offline": {
+    "banner": "You are offline. Saved data stays available and loading resumes automatically when the connection returns.",
+    "waiting": {
+      "title": "Waiting for a connection",
+      "description": "This will load automatically as soon as you are back online."
+    }
+  },
+  "stale": {
+    "title": "Could not refresh",
+    "description": "Showing the last data we have. It may be out of date."
+  },
+  "pokedex": {
+    "search": {
+      "label": "Search Pokémon",
+      "placeholder": "Search by name"
+    },
+    "count": "{count} Pokémon",
+    "noMatches": {
+      "title": "No Pokémon found",
+      "description": "Nothing matches “{query}”. Check the spelling or try a shorter name.",
+      "clear": "Clear search"
+    },
+    "outOfRange": {
+      "title": "That page does not exist",
+      "description": "There are no Pokémon on page {page}.",
+      "first": "Go to the first page"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "status": "Page {page} of {pages}"
+    }
+  },
+  "detail": {
+    "back": "Back to the Pokédex",
+    "height": "Height",
+    "weight": "Weight",
+    "baseExperience": "Base experience",
+    "types": "Types",
+    "abilities": "Abilities",
+    "hidden": "hidden",
+    "stats": "Base stats",
+    "meters": "{value} m",
+    "kilograms": "{value} kg"
+  },
+  "stats": {
+    "hp": "HP",
+    "attack": "Attack",
+    "defense": "Defense",
+    "special-attack": "Sp. Atk",
+    "special-defense": "Sp. Def",
+    "speed": "Speed"
   }
 }

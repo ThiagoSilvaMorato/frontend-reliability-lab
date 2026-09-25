@@ -77,5 +77,62 @@
       "title": "Algo deu errado",
       "description": "Ocorreu um erro inesperado ao exibir esta página."
     }
+  },
+  "common": {
+    "loading": "Carregando…"
+  },
+  "offline": {
+    "banner": "Você está offline. Os dados salvos continuam disponíveis e o carregamento retoma sozinho quando a conexão voltar.",
+    "waiting": {
+      "title": "Aguardando conexão",
+      "description": "Isto será carregado automaticamente assim que você voltar a ficar online."
+    }
+  },
+  "stale": {
+    "title": "Não foi possível atualizar",
+    "description": "Exibindo os últimos dados que temos. Eles podem estar desatualizados."
+  },
+  "pokedex": {
+    "search": {
+      "label": "Buscar Pokémon",
+      "placeholder": "Buscar por nome"
+    },
+    "count": "{count} Pokémon",
+    "noMatches": {
+      "title": "Nenhum Pokémon encontrado",
+      "description": "Nada corresponde a “{query}”. Verifique a grafia ou tente um nome mais curto.",
+      "clear": "Limpar busca"
+    },
+    "outOfRange": {
+      "title": "Essa página não existe",
+      "description": "Não há Pokémon na página {page}.",
+      "first": "Ir para a primeira página"
+    },
+    "pagination": {
+      "label": "Paginação",
+      "previous": "Anterior",
+      "next": "Próxima",
+      "status": "Página {page} de {pages}"
+    }
+  },
+  "detail": {
+    "back": "Voltar para a Pokédex",
+    "height": "Altura",
+    "weight": "Peso",
+    "baseExperience": "Experiência base",
+    "types": "Tipos",
+    "abilities": "Habilidades",
+    "hidden": "oculta",
+    "stats": "Atributos base",
+    "meters": "{value} m",
+    "kilograms": "{value} kg"
+  },
+  "stats": {
+    "hp": "HP",
+    "attack": "Ataque",
+    "defense": "Defesa",
+    "special-attack": "Atq. Esp.",
+    "special-defense": "Def. Esp.",
+    "speed": "Velocidade"
   }
 }
