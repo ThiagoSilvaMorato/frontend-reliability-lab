@@ -3,8 +3,10 @@ import { describe, expect, it } from 'vitest'
 import { App } from './App'
 
 describe('App', () => {
-  it('renders the application title', () => {
+  it('boots with the real providers and router on the Pokédex', () => {
     render(<App />)
-    expect(screen.getByRole('heading', { level: 1, name: /reliability lab/i })).toBeInTheDocument()
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Pokédex' })).toBeInTheDocument()
+    expect(screen.getByRole('navigation', { name: 'Main navigation' })).toBeInTheDocument()
   })
 })
