@@ -4,17 +4,37 @@ import { POKEAPI_BASE_URL } from '@/api/config'
 import { pokemonFixtures } from '@/mocks/fixtures/pokemon'
 import { server } from '@/mocks/server'
 import { requestLog } from '@/observability/requestLog'
-import { fetchPokemon, fetchPokemonList } from './pokemon'
+import { fetchAllPokemon, fetchPokemon, fetchPokemonList } from './pokemon'
 
 describe('fetchPokemonList', () => {
   it('returns a validated page', async () => {
     const page = await fetchPokemonList({ limit: 2, offset: 0 })
     expect(page.count).toBe(pokemonFixtures.length)
-    expect(page.results.map((r) => r.name)).toEqual(['bulbasaur', 'charmander'])
+    expect(page.results).toEqual([
+      { id: 1, name: 'bulbasaur' },
+      { id: 2, name: 'ivysaur' },
+    ])
+  })
+})
+
+describe('fetchAllPokemon', () => {
+  it('returns every Pokémon in a single request', async () => {
+    const all = await fetchAllPokemon()
+
+    expect(all).toHaveLength(pokemonFixtures.length)
+    expect(all).toContainEqual({ id: 25, name: 'pikachu' })
+    expect(requestLog.getSnapshot()).toHaveLength(1)
   })
 })
 
 describe('fetchPokemon', () => {
+  it('encodes the name so it stays a single path segment', async () => {
+    await expect(fetchPokemon('a/../b')).rejects.toMatchObject({
+      info: { kind: 'http', status: 404 },
+    })
+    expect(requestLog.getSnapshot()[0]?.url).toBe(`${POKEAPI_BASE_URL}/pokemon/a%2F..%2Fb`)
+  })
+
   it('returns a validated Pokémon', async () => {
     await expect(fetchPokemon('pikachu')).resolves.toMatchObject({ id: 25, name: 'pikachu' })
   })

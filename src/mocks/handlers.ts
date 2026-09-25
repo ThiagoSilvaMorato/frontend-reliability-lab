@@ -15,6 +15,7 @@ export const handlers = [
     const results = pokemonFixtures
       .slice(offset, offset + limit)
       .map(({ id, name }) => ({ name, url: `${POKEAPI_BASE_URL}/pokemon/${id}/` }))
+    // Like the real API, an offset past the end is a 200 with no results, not an error.
     return HttpResponse.json({
       count: pokemonFixtures.length,
       next: offset + limit < pokemonFixtures.length ? pageUrl(offset + limit, limit) : null,

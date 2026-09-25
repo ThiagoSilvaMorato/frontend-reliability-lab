@@ -13,11 +13,26 @@ import { z } from 'zod'
  */
 const namedResourceSchema = z.object({ name: z.string().min(1), url: z.string() })
 
+const POKEMON_URL_ID = /\/pokemon\/(\d+)\/?$/
+
+/**
+ * The list endpoint only returns `{ name, url }`; the numeric id lives in the URL. It is extracted here,
+ * once, so nothing else needs to know the URL shape. A URL without an id makes the response `malformed`.
+ */
+const pokemonSummarySchema = namedResourceSchema.transform(({ name, url }, ctx) => {
+  const id = POKEMON_URL_ID.exec(url)?.[1]
+  if (id === undefined) {
+    ctx.issues.push({ code: 'custom', message: `no pokemon id in url "${url}"`, input: url })
+    return z.NEVER
+  }
+  return { id: Number(id), name }
+})
+
 export const pokemonListSchema = z.object({
   count: z.number().int().nonnegative(),
   next: z.string().nullable(),
   previous: z.string().nullable(),
-  results: z.array(namedResourceSchema),
+  results: z.array(pokemonSummarySchema),
 })
 
 export const pokemonSchema = z.object({

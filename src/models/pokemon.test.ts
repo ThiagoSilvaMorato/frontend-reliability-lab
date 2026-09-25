@@ -12,10 +12,15 @@ describe('pokemon schemas against real PokéAPI responses', () => {
     expect(page.count).toBeGreaterThan(1000)
     expect(page.previous).toBeNull()
     expect(page.next).toContain('offset=2')
-    expect(page.results[0]).toEqual({
-      name: 'bulbasaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/1/',
-    })
+    expect(page.results[0]).toEqual({ id: 1, name: 'bulbasaur' })
+  })
+
+  it('rejects a list item whose url has no Pokémon id', () => {
+    const broken = {
+      ...pokemonPage,
+      results: [{ name: 'x', url: 'https://pokeapi.co/api/v2/pokemon/' }],
+    }
+    expect(pokemonListSchema.safeParse(broken).success).toBe(false)
   })
 
   it('accepts a real Pokémon and keeps only the fields the app consumes', () => {

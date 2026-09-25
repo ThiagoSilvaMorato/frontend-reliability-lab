@@ -2,14 +2,14 @@ import { CancelledError } from '@tanstack/react-query'
 import { delay, http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 import { POKEAPI_BASE_URL } from '@/api/config'
-import { pokemonFixtures } from '@/mocks/fixtures/pokemon'
+import { pokemonFixture } from '@/mocks/fixtures/pokemon'
 import { server } from '@/mocks/server'
 import { requestLog } from '@/observability/requestLog'
 import { fetchPokemon } from './shared/pokemon'
 import { createQueryClient } from './queryClient'
 
 const detailUrl = `${POKEAPI_BASE_URL}/pokemon/:nameOrId`
-const pikachu = pokemonFixtures[2]
+const pikachu = pokemonFixture('pikachu')
 
 function setup() {
   const client = createQueryClient({ retryDelay: () => 1 })
