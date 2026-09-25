@@ -9,6 +9,8 @@ beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 
 afterEach(() => {
   cleanup()
+  localStorage.clear()
+  document.documentElement.lang = 'en'
   server.resetHandlers()
   requestLog.clear()
 })

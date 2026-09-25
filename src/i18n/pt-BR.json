@@ -1,0 +1,81 @@
+{
+  "app": {
+    "name": "Frontend Reliability Lab",
+    "tagline": "Observe como um frontend React se comporta diante de falhas reais de API e de rede."
+  },
+  "nav": {
+    "label": "Navegação principal",
+    "skipToContent": "Ir para o conteúdo",
+    "pokedex": "Pokédex",
+    "lab": "Reliability Lab"
+  },
+  "language": {
+    "label": "Idioma",
+    "option": {
+      "en": "English",
+      "pt-BR": "Português (Brasil)"
+    }
+  },
+  "pages": {
+    "pokedex": {
+      "title": "Pokédex",
+      "description": "Explore os Pokémon servidos pela PokéAPI."
+    },
+    "lab": {
+      "title": "Reliability Lab",
+      "description": "Escolha um cenário de falha e observe como o app reage."
+    },
+    "notFound": {
+      "title": "Página não encontrada",
+      "description": "A página que você procura não existe.",
+      "back": "Voltar para a Pokédex"
+    }
+  },
+  "errors": {
+    "retry": "Tentar novamente",
+    "badge": {
+      "http": "HTTP {status}",
+      "offline": "Offline",
+      "network": "Erro de rede",
+      "timeout": "Timeout",
+      "malformed": "Resposta malformada",
+      "unexpected": "Erro inesperado"
+    },
+    "offline": {
+      "title": "Você está offline",
+      "description": "Verifique sua conexão com a internet. O carregamento continua sozinho quando ela voltar."
+    },
+    "network": {
+      "title": "Problema de conexão",
+      "description": "Não foi possível concluir a requisição. Verifique sua conexão e tente novamente."
+    },
+    "timeout": {
+      "title": "O servidor demorou demais",
+      "description": "O servidor não respondeu a tempo. Tentar novamente costuma funcionar."
+    },
+    "notFound": {
+      "title": "Não encontrado",
+      "description": "O servidor não tem registro do que foi solicitado."
+    },
+    "server": {
+      "title": "O servidor teve um problema",
+      "description": "O serviço está falhando ou indisponível agora. Tentar de novo daqui a pouco pode funcionar."
+    },
+    "rateLimited": {
+      "title": "Requisições demais",
+      "description": "O serviço pediu para diminuirmos o ritmo. Aguarde um instante e tente novamente."
+    },
+    "client": {
+      "title": "Requisição recusada",
+      "description": "O servidor recusou esta requisição. Tentar novamente não vai mudar o resultado."
+    },
+    "malformed": {
+      "title": "Resposta inesperada",
+      "description": "O servidor respondeu, mas os dados não estavam no formato esperado e por isso não foram usados."
+    },
+    "unexpected": {
+      "title": "Algo deu errado",
+      "description": "Ocorreu um erro inesperado ao exibir esta página."
+    }
+  }
+}

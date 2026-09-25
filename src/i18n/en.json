@@ -1,0 +1,81 @@
+{
+  "app": {
+    "name": "Frontend Reliability Lab",
+    "tagline": "Observe how a React frontend behaves under real API and network failures."
+  },
+  "nav": {
+    "label": "Main navigation",
+    "skipToContent": "Skip to content",
+    "pokedex": "Pokédex",
+    "lab": "Reliability Lab"
+  },
+  "language": {
+    "label": "Language",
+    "option": {
+      "en": "English",
+      "pt-BR": "Português (Brasil)"
+    }
+  },
+  "pages": {
+    "pokedex": {
+      "title": "Pokédex",
+      "description": "Browse Pokémon served by the PokéAPI."
+    },
+    "lab": {
+      "title": "Reliability Lab",
+      "description": "Pick a failure scenario and watch how the app reacts."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist.",
+      "back": "Back to the Pokédex"
+    }
+  },
+  "errors": {
+    "retry": "Try again",
+    "badge": {
+      "http": "HTTP {status}",
+      "offline": "Offline",
+      "network": "Network error",
+      "timeout": "Timeout",
+      "malformed": "Malformed response",
+      "unexpected": "Unexpected error"
+    },
+    "offline": {
+      "title": "You are offline",
+      "description": "Check your internet connection. Loading resumes automatically when it comes back."
+    },
+    "network": {
+      "title": "Connection problem",
+      "description": "The request could not be completed. Check your connection and try again."
+    },
+    "timeout": {
+      "title": "The server took too long",
+      "description": "The server did not answer in time. Trying again usually works."
+    },
+    "notFound": {
+      "title": "Not found",
+      "description": "The server has no record of what was requested."
+    },
+    "server": {
+      "title": "The server had a problem",
+      "description": "The service is failing or unavailable right now. Trying again in a moment may work."
+    },
+    "rateLimited": {
+      "title": "Too many requests",
+      "description": "The service asked us to slow down. Wait a moment and try again."
+    },
+    "client": {
+      "title": "Request rejected",
+      "description": "The server refused this request. Trying again will not change the result."
+    },
+    "malformed": {
+      "title": "Unexpected response",
+      "description": "The server replied, but the data was not in the expected format, so it was not used."
+    },
+    "unexpected": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred while displaying this page."
+    }
+  }
+}
