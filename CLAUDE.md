@@ -64,6 +64,8 @@ src/
 
 - TanStack Query is the **only** owner of server state: data, loading, error, stale, cache, refetching.
   Never mirror them in `useState`/`useEffect`. No parallel cache or fetch-state mechanism without a documented technical reason.
+- Query keys and options come from one `queryOptions` factory per domain (`api/shared/pokemonQueries.ts`), shared by hooks, prefetching and invalidation.
+- Pages render query state through `QueryView` (pending, offline-paused, error by kind, stale data with a failed refresh), never with hand-rolled `isLoading` branches.
 - Query keys come from a single key factory per domain. `queryFn` must forward `signal` to the HTTP client (cancellation).
 - `staleTime`, `gcTime`, `retry`, `retryDelay`, `networkMode` are reliability decisions: each non-default value needs a one-line justification next to it.
 - Mutations / optimistic updates: only when there is a real mutable operation. PokéAPI is read-only, so **no optimistic updates** unless a real case appears
