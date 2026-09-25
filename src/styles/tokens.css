@@ -1,24 +1,49 @@
 /*
- * Design tokens. Tailwind v4 generates utilities from these (bg-surface, text-foreground, border-border, ...).
- * Never use arbitrary color values in components; add or reuse a token here.
+ * Design tokens. Tailwind v4 generates utilities from these (bg-card, text-foreground, border-border, ...).
+ * Names follow shadcn/ui semantics so its components work unchanged. Never use arbitrary or palette
+ * colors (bg-[#fff], text-white) in components; add or reuse a token here.
+ *
+ * Mapping from the design brief:
+ *   Background → background     Surface → card / popover     Primary → primary
+ *   Primary Light → secondary / muted / accent / border      Text → foreground
+ *   Muted Text → faint (decorative only)                     Error → destructive
+ *   Success / Warning / Info → success / warning / info
+ *
+ * Contrast (WCAG): the raw brief colors are too light for some roles, so derived tokens are used.
+ *   muted-foreground  #64748B on white 4.8:1 (readable secondary text; brief's #94A3B8 is only 2.6:1)
+ *   input             #7C8BA1 on white 3.5:1 (control boundary needs 3:1; #E2E8F0 is 1.2:1)
+ *   ring              #688AA6 on white 3.6:1 (focus indicator needs 3:1; Info #7C9BB5 is 2.9:1)
+ *   status-foreground #1E293B on status fills 4.9–6.4:1 (white on Error is only 3.0:1)
  */
 @theme {
   --color-background: #f8fafc;
-  --color-surface: #ffffff;
-  --color-primary: #64748b;
-  --color-primary-light: #e2e8f0;
   --color-foreground: #334155;
+  --color-card: #ffffff;
+  --color-card-foreground: #334155;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #334155;
+
+  --color-primary: #64748b;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #e2e8f0;
+  --color-secondary-foreground: #334155;
+  --color-muted: #e2e8f0;
+  --color-muted-foreground: #64748b;
+  --color-accent: #e2e8f0;
+  --color-accent-foreground: #334155;
+
   --color-border: #e2e8f0;
+  --color-input: #7c8ba1;
+  --color-ring: #688aa6;
 
-  /* #94A3B8 is ~2.6:1 on white: decorative/large text only. Use text-subtle for readable secondary text. */
-  --color-muted: #94a3b8;
-  --color-subtle: #64748b;
-
-  /* Too light for text on white; use for fills/borders/icons next to dark text. */
+  --color-destructive: #c98282;
+  --color-destructive-foreground: #1e293b;
   --color-success: #86a88a;
   --color-warning: #c9a66b;
-  --color-error: #c98282;
   --color-info: #7c9bb5;
+  --color-status-foreground: #1e293b;
+
+  --color-faint: #94a3b8;
 
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }

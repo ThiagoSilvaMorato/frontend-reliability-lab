@@ -1,12 +1,15 @@
 @import 'tailwindcss';
 @import './tokens.css';
 
+/* The palette is light-only. Without this, shadcn's `dark:` classes would follow the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
 
   :focus-visible {
-    @apply ring-info/60 outline-none ring-4;
+    @apply ring-ring/50 outline-none ring-[3px];
   }
 }

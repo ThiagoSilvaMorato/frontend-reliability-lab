@@ -23,7 +23,7 @@ UI strings live in `src/i18n` (`en`, `pt-BR`).
 
 ## Stack
 
-React 19 · TypeScript (strict) · Vite · TanStack Query · Axios · Zod · React Router · MSW · Vitest · React Testing Library · Playwright · ESLint · Prettier · Tailwind CSS v4.
+React 19 · TypeScript (strict) · Vite · TanStack Query · Axios · Zod · React Router · MSW · Vitest · React Testing Library · Playwright · ESLint · Prettier · Tailwind CSS v4 · shadcn/ui (Radix).
 
 Every new dependency must answer, in the commit/ADR: what problem it solves, whether it is simple to do without it,
 the complexity it adds, and the engineering value it demonstrates. No libraries "for convenience".
@@ -33,7 +33,7 @@ the complexity it adds, and the engineering value it demonstrates. No libraries 
 ```text
 src/
 ├── components/
-│   ├── ui/          # simple, reusable primitives (Button, Input, Badge, Card, ...)
+│   ├── ui/          # shadcn/ui primitives (Button, Input, Badge, Card, ...), added with `npx shadcn@latest add <name>`
 │   └── shared/      # composed components built from ui/ and used by several pages
 ├── api/
 │   ├── index.ts     # HTTP client (Axios) config: baseURL, timeout, interceptors
@@ -122,7 +122,8 @@ No observability platform. Telemetry is produced at the HTTP-client/QueryCache b
 ## Design
 
 Minimal, modern, product-like. Styling is Tailwind CSS v4. The palette lives **only** in `src/styles/tokens.css` (`@theme`) and is consumed through
-utilities (`bg-surface`, `text-foreground`, `border-border`, `text-subtle`, ...). No arbitrary color values (`bg-[#fff]`) in components:
+utilities (`bg-card`, `text-foreground`, `border-border`, `text-muted-foreground`, `bg-destructive`, ...) using shadcn/ui semantic names. No arbitrary
+or palette colors (`bg-[#fff]`, `text-white`) in components:
 
 ```text
 Background #F8FAFC · Surface #FFFFFF · Primary #64748B · Primary Light #E2E8F0 · Text #334155
@@ -130,7 +131,7 @@ Muted Text #94A3B8 · Border #E2E8F0 · Success #86A88A · Warning #C9A66B · Er
 ```
 
 Status colors are never the only carrier of meaning (also icon/text). Note: Muted Text `#94A3B8` on white is below WCAG AA for body text —
-use it (`text-muted`) only for large/secondary non-essential text, and `text-subtle` for readable secondary text.
+use it (`text-faint`) only for decorative/large text, and `text-muted-foreground` for readable secondary text. Status fills (`bg-destructive`, ...) take `text-status-foreground`.
 
 ## Testing
 
