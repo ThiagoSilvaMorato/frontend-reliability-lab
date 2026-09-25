@@ -1,4 +1,5 @@
-import { screen, waitFor } from '@testing-library/react'
+import { onlineManager } from '@tanstack/react-query'
+import { act, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { renderApp } from '@/test/renderApp'
 
@@ -57,5 +58,16 @@ describe('app routes and shell', () => {
     await user.tab()
 
     expect(screen.getByRole('link', { name: 'Skip to content' })).toHaveFocus()
+  })
+
+  it('shows a banner while offline and removes it when the connection returns', async () => {
+    renderApp({ route: '/lab' })
+    expect(screen.queryByText(/You are offline/)).not.toBeInTheDocument()
+
+    act(() => onlineManager.setOnline(false))
+    expect(await screen.findByText(/You are offline/)).toBeInTheDocument()
+
+    act(() => onlineManager.setOnline(true))
+    await waitFor(() => expect(screen.queryByText(/You are offline/)).not.toBeInTheDocument())
   })
 })

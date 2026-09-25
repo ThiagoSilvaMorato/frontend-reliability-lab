@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from 'react-router'
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary/ErrorBoundary'
 import { ErrorState } from '@/components/shared/ErrorState/ErrorState'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher/LanguageSwitcher'
+import { OfflineBanner } from '@/components/shared/OfflineBanner/OfflineBanner'
 import { useI18n } from '@/i18n'
 import { cn } from 'cn'
 
@@ -39,6 +40,7 @@ export function AppLayout() {
           <LanguageSwitcher />
         </div>
       </header>
+      <OfflineBanner />
       <main id="main" className="mx-auto max-w-5xl px-4 py-8">
         <QueryErrorResetBoundary>
           {({ reset }) => (

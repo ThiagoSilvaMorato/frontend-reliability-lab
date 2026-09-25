@@ -5,7 +5,7 @@ import type { RouteObject } from 'react-router'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { POKEAPI_BASE_URL } from '@/api/config'
 import { fetchPokemon } from '@/api/shared/pokemon'
-import { pokemonFixtures } from '@/mocks/fixtures/pokemon'
+import { pokemonFixture } from '@/mocks/fixtures/pokemon'
 import { server } from '@/mocks/server'
 import { renderApp } from '@/test/renderApp'
 import { AppLayout } from './AppLayout'
@@ -72,7 +72,7 @@ describe('AppLayout error handling', () => {
         requests++
         return serverIsDown
           ? new HttpResponse(null, { status: 500 })
-          : HttpResponse.json(pokemonFixtures[2])
+          : HttpResponse.json(pokemonFixture('pikachu'))
       }),
     )
     const { user } = renderApp({ routes: layoutWith(<PikachuPage />) })

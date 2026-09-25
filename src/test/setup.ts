@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest'
+import { onlineManager } from '@tanstack/react-query'
 import { cleanup } from '@testing-library/react'
 import { afterAll, afterEach, beforeAll } from 'vitest'
 import { server } from '@/mocks/server'
@@ -12,6 +13,7 @@ afterEach(() => {
   localStorage.clear()
   document.documentElement.lang = 'en'
   server.resetHandlers()
+  onlineManager.setOnline(true)
   requestLog.clear()
 })
 
