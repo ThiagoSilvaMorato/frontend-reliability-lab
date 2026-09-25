@@ -5,6 +5,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  /* Tailwind v4 defaults borders to currentColor; use the palette's border token instead. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
