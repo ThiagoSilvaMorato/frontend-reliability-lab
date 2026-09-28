@@ -32,6 +32,8 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
+      // Card-style radio labels nest their text 3 levels deep (label > span > span); the default is 2.
+      'jsx-a11y/label-has-associated-control': ['error', { depth: 3 }],
     },
   },
   {
