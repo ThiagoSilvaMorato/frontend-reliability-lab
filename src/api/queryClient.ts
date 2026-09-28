@@ -1,4 +1,5 @@
 import { QueryClient } from '@tanstack/react-query'
+import { observeRetries } from '@/observability/retryCounter'
 import { retryDelay, shouldRetry } from './retryPolicy'
 
 interface QueryClientOptions {
@@ -7,7 +8,7 @@ interface QueryClientOptions {
 }
 
 export function createQueryClient(options: QueryClientOptions = {}) {
-  return new QueryClient({
+  const client = new QueryClient({
     defaultOptions: {
       queries: {
         // Pokémon data is effectively static: a fresh entry is reused (and concurrent identical
@@ -21,4 +22,6 @@ export function createQueryClient(options: QueryClientOptions = {}) {
       },
     },
   })
+  observeRetries(client.getQueryCache())
+  return client
 }

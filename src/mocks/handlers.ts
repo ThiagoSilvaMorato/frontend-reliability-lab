@@ -1,34 +1,57 @@
-import { http, HttpResponse } from 'msw'
+import { delay, http, HttpResponse } from 'msw'
 import { POKEAPI_BASE_URL } from '@/api/config'
-import { pokemonFixtures } from './fixtures/pokemon'
+import { scenarioStore } from './scenarios/scenarioStore'
 
-// Mirrors the real API: `next`/`previous` are absolute URLs (or null), and a 404 has a JSON body.
-function pageUrl(offset: number, limit: number) {
-  return `${POKEAPI_BASE_URL}/pokemon?offset=${offset}&limit=${limit}`
+/** Produces the healthy response for a request: fixtures in tests, the real PokéAPI in the browser. */
+export type Upstream = (request: Request) => Response | Promise<Response>
+
+function requestKey(request: Request) {
+  const { pathname, search } = new URL(request.url)
+  return `${request.method} ${pathname}${search}`
 }
 
-export const handlers = [
-  http.get(`${POKEAPI_BASE_URL}/pokemon`, ({ request }) => {
-    const params = new URL(request.url).searchParams
-    const limit = Number(params.get('limit') ?? 20)
-    const offset = Number(params.get('offset') ?? 0)
-    const results = pokemonFixtures
-      .slice(offset, offset + limit)
-      .map(({ id, name }) => ({ name, url: `${POKEAPI_BASE_URL}/pokemon/${id}/` }))
-    // Like the real API, an offset past the end is a 200 with no results, not an error.
-    return HttpResponse.json({
-      count: pokemonFixtures.length,
-      next: offset + limit < pokemonFixtures.length ? pageUrl(offset + limit, limit) : null,
-      previous: offset > 0 ? pageUrl(Math.max(0, offset - limit), limit) : null,
-      results,
-    })
-  }),
+// A 200 whose body no longer matches what the app expects: exactly what schema validation is for.
+function corrupt(request: Request, body: unknown): Record<string, unknown> {
+  const { pathname } = new URL(request.url)
+  const record: Record<string, unknown> =
+    typeof body === 'object' && body !== null ? { ...body } : {}
+  return pathname.endsWith('/pokemon')
+    ? { ...record, count: 'unknown' }
+    : { ...record, types: null }
+}
 
-  http.get(`${POKEAPI_BASE_URL}/pokemon/:nameOrId`, ({ params }) => {
-    const key = String(params['nameOrId'])
-    const found = pokemonFixtures.find((p) => p.name === key || String(p.id) === key)
-    return found
-      ? HttpResponse.json(found)
-      : HttpResponse.json({ status: 404, message: 'Not Found' }, { status: 404 })
-  }),
-]
+/**
+ * The single handler set for every environment. Which scenario is active is read from the scenario
+ * store on each request; only `upstream` differs between environments, so scenario behavior cannot drift.
+ */
+export function createHandlers(upstream: Upstream) {
+  return [
+    http.all(`${POKEAPI_BASE_URL}/*`, async ({ request }) => {
+      const decision = scenarioStore.decide(requestKey(request))
+
+      switch (decision.action) {
+        case 'proceed':
+          if (decision.delayMs) await delay(decision.delayMs)
+          return upstream(request)
+        case 'corrupt': {
+          const response = await upstream(request)
+          if (!response.ok) return response
+          return HttpResponse.json(corrupt(request, await response.json()), {
+            status: response.status,
+          })
+        }
+        case 'respond':
+          return HttpResponse.json(
+            { status: decision.status, message: 'Simulated by the Reliability Lab' },
+            { status: decision.status },
+          )
+        case 'network-error':
+          return HttpResponse.error()
+        case 'hang':
+          // Never answers: the client's own timeout is what ends the request.
+          await delay('infinite')
+          return undefined
+      }
+    }),
+  ]
+}
