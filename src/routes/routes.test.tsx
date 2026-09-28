@@ -19,7 +19,10 @@ describe('app routes and shell', () => {
 
     await user.click(screen.getByRole('link', { name: 'Reliability Lab' }))
 
-    expect(screen.getByRole('heading', { level: 1, name: 'Reliability Lab' })).toBeInTheDocument()
+    // The Lab route is code-split (ADR 0009): its first render waits on a dynamic import.
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Reliability Lab' }),
+    ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Reliability Lab' })).toHaveAttribute(
       'aria-current',
       'page',
