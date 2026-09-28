@@ -14,6 +14,8 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    // e2e/ holds Playwright specs, run by `npm run test:e2e`, not Vitest.
+    exclude: ['e2e/**', 'node_modules/**'],
     setupFiles: ['./src/test/setup.ts'],
     restoreMocks: true,
     // react-router and react-router/dom are resolved to different builds (CJS vs ESM) under Node, which
