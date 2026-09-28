@@ -3,7 +3,7 @@ import { QueryView } from '@/components/shared/QueryView/QueryView'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useI18n } from '@/i18n'
 import { formatPokemonName } from '@/utils/formatPokemonName'
-import { usePokemon } from './hooks/usePokemon'
+import { usePokemon } from '@/hooks/usePokemon'
 import { PokemonDetail } from './PokemonDetail/PokemonDetail'
 import { readBackSearch } from './utils/measurements'
 

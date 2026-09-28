@@ -4,6 +4,7 @@ import { ErrorBoundary } from '@/components/shared/ErrorBoundary/ErrorBoundary'
 import { ErrorState } from '@/components/shared/ErrorState/ErrorState'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher/LanguageSwitcher'
 import { OfflineBanner } from '@/components/shared/OfflineBanner/OfflineBanner'
+import { ScenarioIndicator } from '@/components/shared/ScenarioIndicator/ScenarioIndicator'
 import { useI18n } from '@/i18n'
 import { cn } from 'cn'
 
@@ -37,7 +38,10 @@ export function AppLayout() {
               {t('nav.lab')}
             </NavLink>
           </nav>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-3">
+            <ScenarioIndicator />
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
       <OfflineBanner />
