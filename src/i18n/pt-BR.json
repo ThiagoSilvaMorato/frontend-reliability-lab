@@ -134,5 +134,126 @@
     "special-attack": "Atq. Esp.",
     "special-defense": "Def. Esp.",
     "speed": "Velocidade"
+  },
+  "lab": {
+    "scenario": {
+      "legend": "Cenário",
+      "hint": "Escolha uma falha para simular. Ela vale para todas as requisições do app, em todas as páginas.",
+      "applying": "Iniciando a simulação…",
+      "error": "Não foi possível iniciar a simulação. Service workers podem estar indisponíveis neste navegador."
+    },
+    "scenarios": {
+      "normal": {
+        "name": "Normal",
+        "description": "As requisições vão à PokéAPI real, sem alteração.",
+        "expected": "Os dados carregam rápido e o app se comporta como em produção. Nada é interceptado."
+      },
+      "slow": {
+        "name": "Resposta lenta",
+        "description": "Cada requisição leva alguns segundos.",
+        "expected": "Um estado de carregamento fica visível por cerca de 3 segundos e depois os dados aparecem. Nada é repetido: a requisição funciona, só é lenta."
+      },
+      "timeout": {
+        "name": "Timeout",
+        "description": "As requisições nunca recebem resposta.",
+        "expected": "Cada tentativa desiste após 6 segundos. O app tenta mais duas vezes com backoff (cerca de 20 segundos no total) e então mostra um erro de timeout com retry manual."
+      },
+      "http404": {
+        "name": "HTTP 404",
+        "description": "Toda requisição responde “não encontrado”.",
+        "expected": "O app mostra o erro “não encontrado” na hora. Não repete, porque repetir um 404 não ajuda, e não oferece botão de tentar novamente."
+      },
+      "http500": {
+        "name": "HTTP 500",
+        "description": "Toda requisição falha com erro de servidor.",
+        "expected": "O app repete duas vezes (3 tentativas no total) e mostra um erro de servidor com o botão “Tentar novamente”. Voltar para Normal e tentar de novo recupera sem recarregar a página."
+      },
+      "network": {
+        "name": "Erro de rede",
+        "description": "A conexão cai antes de qualquer resposta.",
+        "expected": "É repetido duas vezes como um 500, mas a mensagem diz que a conexão falhou, não que o servidor falhou."
+      },
+      "malformed": {
+        "name": "Resposta malformada",
+        "description": "O servidor responde 200 com dados no formato errado.",
+        "expected": "A validação rejeita os dados: erro de “resposta inesperada” e sem retry, porque o mesmo corpo falharia de novo. O log mostra “Malformada” mesmo com status 200."
+      },
+      "random": {
+        "name": "Falha aleatória",
+        "description": "Cerca de metade das requisições falha de formas diferentes.",
+        "expected": "A maioria das falhas é absorvida pelos retries e nunca chega à tela; de vez em quando três tentativas seguidas falham e um erro aparece. A mesma seed repete a mesma sequência."
+      },
+      "flaky": {
+        "name": "Instável, depois se recupera",
+        "description": "Cada URL falha duas vezes e depois funciona.",
+        "expected": "As duas primeiras tentativas de cada URL falham com 503 e a terceira funciona: a política de retry esconde o problema. Só o log e o contador de retries mostram que aconteceu."
+      },
+      "offline": {
+        "name": "Offline (simulado)",
+        "description": "Se comporta como se a conexão tivesse caído.",
+        "expected": "Um aviso de offline aparece, as queries esperam em vez de falhar e nenhuma requisição é enviada. Ao sair deste cenário elas retomam sozinhas."
+      }
+    },
+    "seed": {
+      "label": "Seed",
+      "apply": "Repetir com esta seed",
+      "help": "A mesma seed repete as mesmas falhas."
+    },
+    "cache": {
+      "resetOnChange": "Limpar os dados em cache ao trocar de cenário",
+      "hint": "Desligue para ver como o app trata dados antigos quando uma atualização falha.",
+      "reset": "Limpar cache",
+      "refetch": "Buscar de novo"
+    },
+    "expected": {
+      "title": "Comportamento esperado"
+    },
+    "observed": {
+      "title": "Comportamento observado",
+      "empty": "Nenhuma requisição ainda. Use a sonda abaixo ou navegue pela Pokédex.",
+      "requests": "Requisições",
+      "succeeded": "Com sucesso",
+      "failed": "Com falha",
+      "cancelled": "Canceladas",
+      "retries": "Retries automáticos",
+      "averageDuration": "Duração média",
+      "recovered": "Recuperado: uma requisição funcionou após {count} tentativas com falha.",
+      "state": {
+        "title": "Estado do app",
+        "connectivity": "Conectividade",
+        "online": "Online",
+        "offline": "Offline",
+        "queries": "Queries",
+        "fetching": "buscando",
+        "paused": "aguardando conexão",
+        "errored": "com erro",
+        "ready": "prontas"
+      }
+    },
+    "log": {
+      "title": "Log de requisições",
+      "caption": "Requisições desde a ativação do cenário, da mais recente para a mais antiga",
+      "empty": "Nada registrado ainda.",
+      "time": "Hora",
+      "request": "Requisição",
+      "status": "Status",
+      "result": "Resultado",
+      "duration": "Duração",
+      "clear": "Limpar log",
+      "outcome": {
+        "success": "Sucesso",
+        "http": "Erro HTTP",
+        "network": "Erro de rede",
+        "timeout": "Timeout",
+        "offline": "Offline",
+        "malformed": "Malformada",
+        "cancelled": "Cancelada"
+      }
+    },
+    "probe": {
+      "title": "Sonda ao vivo",
+      "description": "Este card usa o mesmo código da página de Pokémon, então reage exatamente como o app."
+    },
+    "indicator": "Simulando: {name}"
   }
 }

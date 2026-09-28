@@ -134,5 +134,126 @@
     "special-attack": "Sp. Atk",
     "special-defense": "Sp. Def",
     "speed": "Speed"
+  },
+  "lab": {
+    "scenario": {
+      "legend": "Scenario",
+      "hint": "Pick a failure to simulate. It applies to every request the app makes, on every page.",
+      "applying": "Starting the simulation…",
+      "error": "The simulation could not start. Service workers may be unavailable in this browser."
+    },
+    "scenarios": {
+      "normal": {
+        "name": "Normal",
+        "description": "Requests go to the real PokéAPI, untouched.",
+        "expected": "Data loads quickly and the app behaves as in production. Nothing is intercepted."
+      },
+      "slow": {
+        "name": "Slow response",
+        "description": "Every request takes a few seconds.",
+        "expected": "A loading state stays visible for about 3 seconds, then the data appears. Nothing is retried: the request succeeds, it is only slow."
+      },
+      "timeout": {
+        "name": "Timeout",
+        "description": "Requests never get an answer.",
+        "expected": "Each attempt gives up after 6 seconds. The app retries twice with backoff (about 20 seconds in total), then shows a timeout error with a manual retry."
+      },
+      "http404": {
+        "name": "HTTP 404",
+        "description": "Every request answers “not found”.",
+        "expected": "The app shows a “not found” error at once. It does not retry, because retrying a 404 cannot help, and it offers no retry button."
+      },
+      "http500": {
+        "name": "HTTP 500",
+        "description": "Every request fails with a server error.",
+        "expected": "The app retries twice (3 attempts in total), then shows a server error with a “Try again” button. Switching to Normal and retrying recovers without reloading the page."
+      },
+      "network": {
+        "name": "Network error",
+        "description": "The connection drops before any answer.",
+        "expected": "Retried twice like a 500, but the message says the connection failed, not that the server did."
+      },
+      "malformed": {
+        "name": "Malformed response",
+        "description": "The server answers 200 with data in the wrong shape.",
+        "expected": "Validation rejects the data: an “unexpected response” error and no retry, because the same body would fail again. The log shows “Malformed” even though the status was 200."
+      },
+      "random": {
+        "name": "Random failure",
+        "description": "About half of the requests fail in different ways.",
+        "expected": "Most failures are absorbed by retries and never reach the screen; now and then three attempts fail in a row and an error appears. The same seed replays the same sequence."
+      },
+      "flaky": {
+        "name": "Flaky, then recovers",
+        "description": "Each URL fails twice, then works.",
+        "expected": "The first two attempts of every URL fail with a 503 and the third succeeds: the retry policy hides the problem. Only the log and the retry counter show it happened."
+      },
+      "offline": {
+        "name": "Offline (simulated)",
+        "description": "Behaves as if the connection was lost.",
+        "expected": "An offline banner appears, queries wait instead of failing and no request is sent. When you leave this scenario they resume by themselves."
+      }
+    },
+    "seed": {
+      "label": "Seed",
+      "apply": "Replay with this seed",
+      "help": "The same seed replays the same failures."
+    },
+    "cache": {
+      "resetOnChange": "Reset cached data when the scenario changes",
+      "hint": "Turn it off to see how the app treats stale data when a refresh fails.",
+      "reset": "Reset cache",
+      "refetch": "Refetch"
+    },
+    "expected": {
+      "title": "Expected behavior"
+    },
+    "observed": {
+      "title": "Observed behavior",
+      "empty": "No requests yet. Use the probe below or browse the Pokédex.",
+      "requests": "Requests",
+      "succeeded": "Succeeded",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "retries": "Automatic retries",
+      "averageDuration": "Average duration",
+      "recovered": "Recovered: a request succeeded after {count} failed attempts.",
+      "state": {
+        "title": "App state",
+        "connectivity": "Connectivity",
+        "online": "Online",
+        "offline": "Offline",
+        "queries": "Queries",
+        "fetching": "fetching",
+        "paused": "waiting for connection",
+        "errored": "with an error",
+        "ready": "ready"
+      }
+    },
+    "log": {
+      "title": "Request log",
+      "caption": "Requests since the scenario was activated, newest first",
+      "empty": "Nothing recorded yet.",
+      "time": "Time",
+      "request": "Request",
+      "status": "Status",
+      "result": "Result",
+      "duration": "Duration",
+      "clear": "Clear log",
+      "outcome": {
+        "success": "Success",
+        "http": "HTTP error",
+        "network": "Network error",
+        "timeout": "Timeout",
+        "offline": "Offline",
+        "malformed": "Malformed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "probe": {
+      "title": "Live probe",
+      "description": "This card uses the same code as the Pokémon page, so it reacts exactly like the app."
+    },
+    "indicator": "Simulating: {name}"
   }
 }
