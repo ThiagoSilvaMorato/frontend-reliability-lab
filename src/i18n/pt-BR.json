@@ -254,6 +254,23 @@
       "title": "Sonda ao vivo",
       "description": "Este card usa o mesmo código da página de Pokémon, então reage exatamente como o app."
     },
-    "indicator": "Simulando: {name}"
+    "indicator": "Simulando: {name}",
+    "vitals": {
+      "title": "Web Vitals",
+      "description": "Métricas reais de performance desta sessão (não relacionadas ao cenário ativo).",
+      "pending": "medindo…",
+      "metric": {
+        "LCP": "LCP",
+        "INP": "INP",
+        "CLS": "CLS",
+        "FCP": "FCP",
+        "TTFB": "TTFB"
+      },
+      "rating": {
+        "good": "boa",
+        "needs-improvement": "precisa melhorar",
+        "poor": "ruim"
+      }
+    }
   }
 }

@@ -6,6 +6,7 @@ import { useScenarioControls } from './hooks/useScenarioControls'
 import { LiveProbe } from './LiveProbe/LiveProbe'
 import { RequestLog } from './RequestLog/RequestLog'
 import { ScenarioPicker } from './ScenarioPicker/ScenarioPicker'
+import { WebVitalsPanel } from './WebVitalsPanel/WebVitalsPanel'
 import { SeedForm } from './SeedForm/SeedForm'
 
 export function LabPage() {
@@ -48,6 +49,7 @@ export function LabPage() {
 
         <div className="space-y-6">
           <ExpectedObserved scenario={scenario.id} />
+          <WebVitalsPanel />
           <LiveProbe />
           <RequestLog />
         </div>

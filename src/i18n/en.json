@@ -254,6 +254,23 @@
       "title": "Live probe",
       "description": "This card uses the same code as the Pokémon page, so it reacts exactly like the app."
     },
-    "indicator": "Simulating: {name}"
+    "indicator": "Simulating: {name}",
+    "vitals": {
+      "title": "Web Vitals",
+      "description": "Real-user performance metrics for this page load (not tied to the active scenario).",
+      "pending": "measuring…",
+      "metric": {
+        "LCP": "LCP",
+        "INP": "INP",
+        "CLS": "CLS",
+        "FCP": "FCP",
+        "TTFB": "TTFB"
+      },
+      "rating": {
+        "good": "good",
+        "needs-improvement": "needs improvement",
+        "poor": "poor"
+      }
+    }
   }
 }

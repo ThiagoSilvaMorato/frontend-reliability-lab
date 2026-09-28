@@ -30,7 +30,8 @@ describe('Reliability Lab page', () => {
   it('offers every scenario as one accessible group, starting on Normal', async () => {
     renderApp({ route: '/lab' })
 
-    const group = screen.getByRole('group', { name: 'Scenario' })
+    // The Lab route is code-split (ADR 0009): its first render waits on a dynamic import.
+    const group = await screen.findByRole('group', { name: 'Scenario' })
     expect(within(group).getAllByRole('radio')).toHaveLength(SCENARIO_IDS.length)
     expect(radio(/^Normal/)).toBeChecked()
     expect(screen.getByText(/Nothing is intercepted/)).toBeInTheDocument()
